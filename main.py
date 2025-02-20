@@ -1,9 +1,9 @@
 def main():
-    book_path = "books/frankenstein.txt"
-    text = get_book_text(book_path)
+    filename = input("Enter the path and file name to your text: ")
+    text = get_book_text(filename)
     num_words = get_num_words(text)
     characters = get_character_count(text)
-    report = get_report(text, book_path, num_words, characters)
+    report = get_report(text, filename, num_words, characters)
 
 def get_num_words(text):
     words = text.split()
@@ -23,10 +23,10 @@ def get_book_text(path):
     with open(path) as f:
         return f.read()
     
-def get_report(text, book_path, num_words, characters):
+def get_report(text, filename, num_words, characters):
     descending_order = dict(sorted(characters.items(), key=lambda x: x[1], reverse=True))
     include_list = "abcdefghijklmnopqrstuvwxyz"
-    print(f"--- Begin report of {book_path} ---")
+    print(f"--- Begin report of {filename} ---")
     print(f"{num_words} words found in the document"'\n')
     for character, count in descending_order.items():
         if character in include_list:
